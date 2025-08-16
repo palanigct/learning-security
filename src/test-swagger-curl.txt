@@ -1,0 +1,16 @@
+# Test Swagger endpoints with curl
+
+# Test OpenAPI docs endpoint
+curl -X GET "http://localhost:8080/v3/api-docs" \
+  -H "Accept: application/json"
+
+# Test Swagger UI endpoint
+curl -X GET "http://localhost:8080/swagger-ui.html" \
+  -H "Accept: text/html"
+
+# Test Swagger UI resources
+curl -X GET "http://localhost:8080/swagger-ui/index.html" \
+  -H "Accept: text/html"
+
+# Test if the endpoints are accessible without authentication
+# These should return 200 OK if properly configured
