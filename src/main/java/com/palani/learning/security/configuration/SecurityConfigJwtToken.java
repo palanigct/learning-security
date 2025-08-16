@@ -53,6 +53,7 @@ public class SecurityConfigJwtToken {
                 .authenticationProvider(authenticationProvider());
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()));
         return http.build();
     }
 
