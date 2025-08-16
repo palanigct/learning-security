@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtUtil {
 
     // Base64-encoded 256-bit key (you can generate one securely)
-    private static final String SECRET_KEY = "qwertyuiopasdfghjklzxcvbnm123456"; // Must be 32+ chars
+    private static final String SECRET_KEY = "qwertyuiopasdfghjklzxcvbnm1234567890abcdefghijklmnopqrstuvwxyz"; // Must be 64+ chars for HS256
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = SECRET_KEY.getBytes();
@@ -44,7 +44,7 @@ public class JwtUtil {
 
     private Claims getClaims(String token) {
         return Jwts.parser()
-                .verifyWith(getSigningKey())  // this is new in 0.12.6
+                .verifyWith(getSigningKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
