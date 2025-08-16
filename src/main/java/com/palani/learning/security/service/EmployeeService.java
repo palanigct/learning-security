@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class for employee-related business logic.
+ * <p>
+ * Handles operations related to Employee entities.
+ * </p>
+ */
 @Log4j2
 @Service
 public class EmployeeService {
@@ -15,6 +21,11 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    /**
+     * Retrieves all employees from the repository.
+     *
+     * @return a list of Employee entities
+     */
     public List<Employee> getEmployeeList() {
         log.debug("Retrieving employee list from repository");
         return employeeRepository.findAll();

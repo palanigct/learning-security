@@ -24,6 +24,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.util.List;
 
+/**
+ * Security configuration for JWT-based authentication.
+ * <p>
+ * Configures HTTP security, JWT filter, and OpenAPI security scheme.
+ * </p>
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigJwtToken {
@@ -34,6 +40,13 @@ public class SecurityConfigJwtToken {
     @Autowired
     UserDetailsService userDetailsService;
 
+    /**
+     * Configures the security filter chain for the application.
+     *
+     * @param http the HttpSecurity to modify
+     * @return the configured SecurityFilterChain
+     * @throws Exception if a security error occurs
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -57,11 +70,23 @@ public class SecurityConfigJwtToken {
         return http.build();
     }
 
+    /**
+     * Provides the authentication manager bean.
+     *
+     * @param authConfig the authentication configuration
+     * @return the authentication manager
+     * @throws Exception if an error occurs
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
+    /**
+     * Configures the authentication provider with user details and password encoder.
+     *
+     * @return the configured DaoAuthenticationProvider
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -70,6 +95,11 @@ public class SecurityConfigJwtToken {
         return provider;
     }
 
+    /**
+     * Provides the password encoder bean.
+     *
+     * @return the password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -77,6 +107,11 @@ public class SecurityConfigJwtToken {
 
     private static final String SECURITY_SCHEME_NAME = "bearerAuth";
 
+    /**
+     * Configures the OpenAPI documentation with JWT security scheme.
+     *
+     * @return the OpenAPI configuration
+     */
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()

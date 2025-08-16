@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST controller for employee-related endpoints.
+ * <p>
+ * Provides APIs to fetch employee details.
+ * </p>
+ */
 @Log4j2
 @RestController
 @RequestMapping("/employee")
@@ -18,6 +24,11 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    /**
+     * Retrieves the list of all employees.
+     *
+     * @return a list of Employee entities
+     */
     @GetMapping("/get/all")
     public List<Employee> getEmployeeDetails() {
         log.info("Fetching all employee details");

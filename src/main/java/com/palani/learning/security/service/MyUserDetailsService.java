@@ -11,11 +11,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Custom implementation of Spring Security's UserDetailsService.
+ * <p>
+ * Provides user details for authentication, currently with a hardcoded admin user.
+ * </p>
+ */
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
 
+    /**
+     * Loads user details by username.
+     *
+     * @param username the username to look up
+     * @return UserDetails for the given username
+     * @throws UsernameNotFoundException if the user is not found
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.info("Loading user details for username: {}", username);
