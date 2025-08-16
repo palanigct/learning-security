@@ -12,6 +12,8 @@
         <Logger name="com.palani.learning.security" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
+        <Logger name="org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer" level="error" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>
-
